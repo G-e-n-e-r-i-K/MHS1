@@ -4,7 +4,7 @@ import time
 import sys
 
 
-CS = ev3.ColorSensor("in1")
+CS = ev3.ColorSensor("in2")
 CS.mode = "COL-COLOR"
 def CheckColourNew():
 
@@ -20,8 +20,9 @@ def CheckColourNew():
     else:
         print("Other Colour")
         return 3
-
+'''
 while True:
     colour = CheckColourNew()
     print(colour)
     time.sleep(1)
+    '''

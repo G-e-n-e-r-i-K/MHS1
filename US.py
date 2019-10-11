@@ -3,10 +3,10 @@ import ev3dev.ev3 as ev3
 import time
 import sys
 
-USR = ev3.Sensor("in3", driver_name = "lego-ev3-us")
+USR = ev3.Sensor("in4", driver_name = "lego-ev3-us")
 USR.mode = "US-DIST-CM"
-USF = ev3.Sensor("in3", driver_name = "lego-ev3-us")
-USF.mode = "US-DIST-CM"
+#USF = ev3.Sensor("in3", driver_name = "lego-ev3-us")
+#USF.mode = "US-DIST-CM"
 
 # TODO: redo a, b with centreLine and offseFromCentre in the code
 a = 1
@@ -48,7 +48,9 @@ def USFCheck():
     else:
         print("center")
         return 3
+'''
 while True:
     #USF.value(0) = USFVal
     USFVal = USF.value(0)
     print(USFVal) 
+'''
