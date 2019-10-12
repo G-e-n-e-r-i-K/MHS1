@@ -18,7 +18,7 @@ def forward(speed = 500,runtime = 1):
     MA.run_timed(time_sp = runtime * 1000, speed_sp=speed) 
     MB.run_timed(time_sp = runtime * 1000, speed_sp=-speed) 
     MC.run_timed(time_sp = runtime * 1000, speed_sp=speed) 
-    MD.run_timed(time_sp = runtime * 1000, speed_sp=-speed) 
+    MD.run_timed(time_sp = runtime * 1000, speed_sp=-speed)     
     time.sleep(runtime) 
     CalcPos[0] += 1
 

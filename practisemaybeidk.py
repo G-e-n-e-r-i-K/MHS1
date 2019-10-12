@@ -47,27 +47,43 @@ def cmps_correct(curr_heading, trim = 15):
         #print("in range")
         pass
 
+def recenter_cmps():
+    curr_heading = get_current_heading(init_cmps_value)
+    while 45 < curr_heading < 270:
+        curr_heading = get_current_heading(init_cmps_value)
+        cmps_correct(curr_heading)
+
 def cmpscorr():
     curr_heading = get_current_heading(init_cmps_value)
-
-    while 90 < curr_heading < 225:
+    while 135 < curr_heading < 190:
         curr_heading = get_current_heading(init_cmps_value)
         cmps_correct(curr_heading)
 
 def main():
     IROut = IR.value(0)
     IRVal = IR.value(3)
+    curr_heading = get_current_heading(init_cmps_value)
     if 0 < IROut < 4:
         #print('Ball is on the left: 0<IROut<4')
-        motors.spinLeft()
+        motors.spinLeft(0.25)
     elif 4 < IROut < 6:
         #print('Ball is on the in front: 4<IROut<6')
-        motors.forward(1000,0.5)                          
+        motors.forward(1000,0.5) 
+        time.sleep(0.2)                         
         motors.backwards(1000,0.5)                                    
     elif 9 >= IROut > 6:
         #print('Ball is on the right: 9>=IROut>6')
-        motors.spinRight()
+        motors.spinRight(0.25)
     elif IROut == 0:
+        print("no ball seen")
+        motors.spinRight(0.125)
+        IROut = IR.value(0)
+        if IROut != 0:
+            curr_heading = get_current_heading(init_cmps_value)
+            if 90 < curr_heading < 225:
+                cmpscorr()
+
+        '''
         #print("no ball seen")
         IROut = IR.value(0)
         if IROut != 0: pass
@@ -83,6 +99,7 @@ def main():
         IROut = IR.value(0)
         if IROut != 0: pass
         time.sleep(1)
+        '''
     cmpscorr()
 
 loop_on = False
@@ -98,5 +115,3 @@ while True:
             loop_on = True
         while button.enter:
             pass
-    
-    
